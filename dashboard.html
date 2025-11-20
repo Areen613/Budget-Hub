@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Our Budget Hub – Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">
+      <span class="logo-mark">💸</span>
+      <div class="logo-text-wrap">
+        <span class="logo-text">Our Budget Hub</span>
+        <span class="logo-sub">Teamwork but make it cute</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span id="welcome-text" class="welcome-text"></span>
+      <button id="logout-btn" class="btn ghost-btn">Log out</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="goal-section card">
+      <div class="goal-header">
+        <div>
+          <h2 id="goal-name">Shared Goal</h2>
+          <p class="goal-caption">Edit this to be your current mission: trip, apartment, emergency fund, anything.</p>
+        </div>
+        <button id="edit-goal-btn" class="btn small-btn">Edit goal ✏️</button>
+      </div>
+
+      <div class="goal-body">
+        <div class="goal-amounts">
+          <div>
+            <p class="label">Goal amount</p>
+            <p id="goal-amount" class="number-text">$0</p>
+          </div>
+          <div>
+            <p class="label">Saved so far</p>
+            <p id="saved-amount" class="number-text">$0</p>
+          </div>
+          <div>
+            <p class="label">Still needed</p>
+            <p id="remaining-amount" class="number-text">$0</p>
+          </div>
+        </div>
+
+        <div class="progress-wrapper">
+          <div class="progress-bar-bg">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+          </div>
+          <p id="progress-label" class="progress-label">0% complete</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary-grid">
+      <article class="card mini-card">
+        <p class="label">You added</p>
+        <p id="you-total" class="number-text with-emoji">💖 $0</p>
+        <p class="summary-note">Sugar mommy / daddy energy.</p>
+      </article>
+      <article class="card mini-card">
+        <p class="label">Partner added</p>
+        <p id="partner-total" class="number-text with-emoji">🫶 $0</p>
+        <p class="summary-note">They’re trying their best fr.</p>
+      </article>
+      <article class="card mini-card">
+        <p class="label">Total spent</p>
+        <p id="spent-total" class="number-text with-emoji">🧾 $0</p>
+        <p class="summary-note" id="spent-note">So far… very calm.</p>
+      </article>
+      <article class="card mini-card">
+        <p class="label">Balance</p>
+        <p id="balance-total" class="number-text with-emoji">💰 $0</p>
+        <p class="summary-note" id="balance-note">Slowly becoming rich.</p>
+      </article>
+    </section>
+
+    <section class="vibes-grid">
+      <article class="card vibe-card">
+        <h3>This month’s vibe</h3>
+        <p id="month-label" class="vibe-label">–</p>
+        <p class="vibe-line">
+          Saved: <span id="month-saved">$0</span> · Spent: <span id="month-spent">$0</span>
+        </p>
+        <p id="month-message" class="vibe-message">Add a few entries to see the vibe ✨</p>
+      </article>
+
+      <article class="card vibe-card">
+        <h3>Where is the money going?</h3>
+        <p class="vibe-line">Top spend category: <span id="top-category">–</span></p>
+        <div id="category-bars" class="category-bars">
+          <!-- tiny bar chart -->
+        </div>
+      </article>
+    </section>
+
+    <section class="forms-grid">
+      <article class="card">
+        <h3>Add contribution</h3>
+        <form id="contribution-form" class="stack-form">
+          <div class="form-group dual">
+            <div>
+              <label for="contributor">Who</label>
+              <select id="contributor" required>
+                <option value="you">You</option>
+                <option value="partner">Partner</option>
+              </select>
+            </div>
+            <div>
+              <label for="contribution-amount">Amount</label>
+              <input id="contribution-amount" type="number" min="0" step="0.01" required placeholder="50">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contribution-category">Category</label>
+            <select id="contribution-category">
+              <option value="general">General savings</option>
+              <option value="trip">Trip</option>
+              <option value="bills">Bills</option>
+              <option value="emergency">Emergency</option>
+              <option value="fun">Fun</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contribution-note">Note (optional)</label>
+            <input id="contribution-note" type="text" placeholder="ex: side job money, tips, etc.">
+          </div>
+
+          <button type="submit" class="btn primary-btn full-width">Add money 💸</button>
+        </form>
+      </article>
+
+      <article class="card">
+        <h3>Add expense</h3>
+        <form id="expense-form" class="stack-form">
+          <div class="form-group dual">
+            <div>
+              <label for="spender">Who</label>
+              <select id="spender" required>
+                <option value="you">You</option>
+                <option value="partner">Partner</option>
+              </select>
+            </div>
+            <div>
+              <label for="expense-amount">Amount</label>
+              <input id="expense-amount" type="number" min="0" step="0.01" required placeholder="30">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-category">Category</label>
+            <select id="expense-category">
+              <option value="food">Food & drinks</option>
+              <option value="transport">Transport</option>
+              <option value="bills">Bills</option>
+              <option value="shopping">Shopping</option>
+              <option value="fun">Fun</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-note">Note (optional)</label>
+            <input id="expense-note" type="text" placeholder="ex: bubble tea, uber, etc.">
+          </div>
+
+          <button type="submit" class="btn danger-btn full-width">Add expense 🧾</button>
+        </form>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="transactions-header">
+        <h3>History</h3>
+        <div class="filters">
+          <select id="filter-person">
+            <option value="all">All people</option>
+            <option value="you">You</option>
+            <option value="partner">Partner</option>
+          </select>
+          <select id="filter-type">
+            <option value="all">All types</option>
+            <option value="contribution">Contributions</option>
+            <option value="expense">Expenses</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="txn-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Who</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Note</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="transactions-body">
+            <!-- rows by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="goal-modal" class="modal hidden">
+    <div class="modal-content card">
+      <h3>Edit goal</h3>
+      <form id="goal-form" class="stack-form">
+        <div class="form-group">
+          <label for="goal-name-input">Goal name</label>
+          <input id="goal-name-input" type="text" required placeholder="Trip to NYC">
+        </div>
+        <div class="form-group">
+          <label for="goal-amount-input">Goal amount</label>
+          <input id="goal-amount-input" type="number" min="0" step="0.01" required placeholder="2000">
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancel-goal-btn" class="btn ghost-btn">Cancel</button>
+          <button type="submit" class="btn primary-btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
